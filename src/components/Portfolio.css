@@ -1,0 +1,382 @@
+﻿/* =========================================================
+   VARIABLES
+   ========================================================= */
+:root {
+  /* alturas */
+  --site-header-h: 72px;
+  --portfolio-top-gap: clamp(12px, 5vw, 2px);
+  --nav-h: 64px;
+  --portfolio-header-gap: clamp(12px, 2.2vw, 28px);
+  --portfolio-viewport-max: 86vh; /* limita altura máxima del mosaico */
+
+  /* columnas */
+  --cols-xxl: 8;
+  --cols-xl: 7;
+  --cols-lg: 6;
+  --cols-md: 5;
+  --cols-sm: 3;
+  --cols-xs: 2;
+
+  /* espaciados */
+  --col-gap: clamp(0.9rem, 1vw, 1.2rem);
+  --row-gap: 1rem;
+  --grid-padding: clamp(0.75rem, 3.2vw, 5rem);
+
+  /* ajuste fino horizontal */
+  --grid-nudge-right: 130px;
+
+  /* estilos */
+  --overlay-gradient: linear-gradient(180deg, rgba(8,12,24,0) 0%, rgba(8,12,24,.85) 90%);
+  --surface-border: rgba(148,163,184,0.18);
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+
+  /* tipografías */
+  --font-display: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  /* color acento suave para títulos */
+  --title-gradient: linear-gradient(
+    90deg,
+    #e9d5ff 0%,   /* lila */
+    #a5b4fc 45%,  /* índigo */
+    #fde68a 100%  /* dorado suave (armoniza con featured) */
+  );
+}
+
+/* =========================================================
+   RESPONSIVE VARIABLES
+   ========================================================= */
+@media (max-width: 1600px) { :root { --grid-nudge-right: 80px; } }
+@media (max-width: 1200px) { :root { --grid-nudge-right: 40px; } }
+@media (max-width: 768px)  { :root { --grid-nudge-right: 0px; } }
+@media (max-width: 900px)  { :root { --portfolio-header-gap: clamp(16px, 3vw, 36px); } }
+@media (max-width: 640px)  { :root { --portfolio-header-gap: clamp(12px, 2.5vw, 28px); } }
+
+/* =========================================================
+   RESET
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* =========================================================
+   PORTFOLIO BASE
+   ========================================================= */
+#portfolio, .portfolio { block-size: auto; }
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  background: rgba(0, 0, 0, 0.3);
+  overflow-x: clip;
+}
+
+.portfolio-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-top: 15px;
+  margin-bottom: var(--portfolio-header-gap);
+  padding: 0 clamp(1.25rem, 2vw, 2rem);
+}
+
+.portfolio-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.portfolio-main-title {
+  margin: 0 0 .75rem 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5.2vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: .02em;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.portfolio-main-title::after {
+  content: "";
+  display: block;
+  width: clamp(40px, 8vw, 76px);
+  height: 3px;
+  margin: .5rem auto 0 auto;
+  border-radius: 2px;
+  background: var(--about-underline);
+}
+
+/* =========================================================
+   MASONRY VIEWPORT
+   ========================================================= */
+.masonry-viewport {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: min(calc(100vh - var(--nav-h)), var(--portfolio-viewport-max));
+  overflow: hidden;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--grid-padding);
+}
+
+.masonry-scale {
+  width: calc((100vw - (var(--grid-padding) * 2)) * var(--scale-inverse, 1));
+  transition: transform .25s ease;
+  will-change: transform;
+}
+
+/* =========================================================
+   MASONRY COLUMNS
+   ========================================================= */
+.portfolio-columns {
+  column-count: var(--cols-xxl);
+  column-fill: balance;
+  column-gap: var(--col-gap);
+  transform: translateX(var(--grid-nudge-right));
+  will-change: transform;
+}
+
+@media (max-width: 1680px) { .portfolio-columns { column-count: var(--cols-xl); } }
+@media (max-width: 1480px) { .portfolio-columns { column-count: var(--cols-lg); } }
+@media (max-width: 1240px) { .portfolio-columns { column-count: var(--cols-md); } }
+@media (max-width: 900px)  { .portfolio-columns { column-count: var(--cols-sm); } }
+@media (max-width: 640px)  { .portfolio-columns { column-count: var(--cols-xs); } }
+
+/* =========================================================
+   ITEM (CARD)
+   ========================================================= */
+.portfolio-item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 var(--row-gap);
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+  overflow: clip;
+  background: rgba(2, 6, 23, 0.4);
+  break-inside: avoid;
+  cursor: pointer;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+/* =========================================================
+   RATIO BOX (S / M / L)
+   ========================================================= */
+.portfolio-item .ratio-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.portfolio-item .ratio-box::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: var(--ratio, 100%);
+}
+
+.portfolio-item.tail-fill .ratio-box::after {
+  content: "";
+  display: block;
+  height: var(--tail-extra, 0px);
+}
+
+/* tamaños */
+.portfolio-item.size-S .ratio-box { --ratio: 72%; }
+.portfolio-item.size-M .ratio-box { --ratio: 100%; }
+.portfolio-item.size-L .ratio-box { --ratio: 135%; }
+
+/* =========================================================
+   IMAGEN
+   ========================================================= */
+.portfolio-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+
+/* =========================================================
+   OVERLAY Y TITULO
+   ========================================================= */
+.portfolio-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem 1rem 1.1rem;
+  background: var(--overlay-gradient);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.portfolio-title {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.15;
+}
+
+/* hover / focus */
+.portfolio-item:is(:hover, :focus-visible) .portfolio-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-item:is(:hover, :focus-visible) .portfolio-image {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   FEATURED
+   ========================================================= */
+.portfolio-item.featured {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 215, 80, 0.18) 0%,
+    rgba(255, 200, 50, 0.10) 40%,
+    rgba(2, 6, 23, 0.40) 100%
+  );
+  border: 1px solid rgba(156, 143, 97, 0.548);
+}
+
+.portfolio-item.featured .portfolio-title {
+  color: #eeba1d;
+}
+
+.portfolio-item.featured:is(:hover, :focus-visible) {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 220, 90, 0.22) 0%,
+    rgba(255, 190, 60, 0.12) 42%,
+    rgba(2, 6, 23, 0.40) 100%
+  );
+  border-color: rgb(245, 244, 243);
+}
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+#portfolio { scroll-margin-top: calc(var(--site-header-h) + 24px); }
+
+/* =========================================================
+   MEDIA QUERIES
+   ========================================================= */
+
+/* Notebook / tablet chico */
+@media (max-width: 1024px){
+  :root{
+    --grid-padding: clamp(12px, 3.5vw, 20px);
+  }
+  .portfolio-wrapper{
+    margin-top: calc(var(--site-header-h) + clamp(8px, 1.6vw, 16px));
+  }
+}
+
+/* Phones generales */
+@media (max-width: 768px){
+  :root{
+    --grid-nudge-right: 0px;
+    --grid-padding: clamp(12px, 4vw, 18px);
+    --col-gap: .75rem;
+    --row-gap: .75rem;
+    --cols-sm: 2;
+  }
+
+  .portfolio-main-title{
+    font-size: clamp(1.6rem, 7vw, 2rem);
+    margin-bottom: .25rem;
+  }
+
+  .masonry-viewport{
+    height: auto;
+    overflow: visible;
+    padding-inline: var(--grid-padding);
+  }
+  .masonry-scale{
+    width: 100%;
+    transform: none !important;
+  }
+  .portfolio-columns{
+    column-count: var(--cols-xs);
+    column-gap: var(--col-gap);
+    transform: none;
+  }
+
+  .portfolio-item .ratio-box::before{ padding-top: var(--ratio, 110%); }
+  .portfolio-item.size-S .ratio-box { --ratio: 95%; }
+  .portfolio-item.size-M .ratio-box { --ratio: 110%; }
+  .portfolio-item.size-L .ratio-box { --ratio: 135%; }
+
+  .portfolio-item{ border-radius: 14px; }
+  .portfolio-overlay{ padding: .75rem .75rem .85rem; }
+}
+
+/* Phones angostos: 1 columna */
+@media (max-width: 420px){
+  :root{ --cols-xs: 1; }
+  .portfolio-columns{ column-count: 1; }
+}
+
+/* Touch (sin hover) */
+@media (hover: none) and (pointer: coarse){
+  .portfolio-item .portfolio-overlay{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .portfolio-item .portfolio-image{ transform: none; }
+}
+
+/* Notebook fit (1280×800 / 1366×768) */
+@media (max-width: 1366px) and (min-width: 1024px){
+  :root{
+    --portfolio-top-gap: clamp(8px, 1.4vw, 14px);
+    --col-gap: .85rem;
+    --row-gap: .85rem;
+    --cols-lg: 6;
+  }
+
+  .portfolio-main-title{
+    margin-bottom: .25rem;
+    font-size: clamp(2rem, 4vw, 2.4rem);
+  }
+
+  .masonry-viewport{
+    height: calc(100vh - var(--nav-h));
+    overflow: hidden;
+    padding-inline: clamp(12px, 2.6vw, 24px);
+  }
+
+  .masonry-scale{
+    --scale-inverse: .92;
+    transform: scale(var(--scale-inverse));
+    transform-origin: top center;
+  }
+
+  .portfolio-columns{
+    column-count: var(--cols-lg);
+    transform: none;
+  }
+}
+
+/* Ajuste específico 1280×800 */
+@media (max-width: 1280px) and (max-height: 820px){
+  .masonry-scale{ --scale-inverse: .90; }
+}
+
+/* Mobile overrides */
+@media (max-width: 768px) {
+  .portfolio-wrapper {
+    margin-top: calc(var(--site-header-h) + 20px);
+    padding-top: 0;
+  }
+}
+@media (max-width: 1280px) and (min-width: 769px) {
+  .portfolio-wrapper {
+    margin-top: calc(var(--site-header-h) + 32px);
+  }
+}

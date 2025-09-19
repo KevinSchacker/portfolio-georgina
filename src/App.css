@@ -1,0 +1,19 @@
+.App {
+  min-height: 100vh;
+  /* Using darker purple gradient and !important for better contrast */
+  background: linear-gradient(135deg, #312e81 0%, #4c1d95 50%, #581c87 100%) !important;
+  color: #ffffff;
+  position: relative;
+}
+
+/* Adding additional background layer to ensure dark background */
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #312e81;
+  z-index: -1;
+}

@@ -1,0 +1,344 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Brand Identity Design",
+      "category": "Branding",
+      "description": "Desarrollo completo de identidad visual para startup tecnológica, incluyendo logo, paleta de colores, tipografía y aplicaciones.",
+      "mainImage": "/brand-identity-design-mockup.jpg",
+      "images": [
+        "/brand-identity-design-mockup.jpg",
+        "/brand-identity-design-mockup.jpg",
+        "/brand-identity-design-mockup.jpg"
+      ],
+      "client": "TechStart Solutions",
+      "year": "2024",
+      "tools": ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
+      "size": "L",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Mobile App UI Design",
+      "category": "UI/UX Design",
+      "description": "Diseño de interfaz completa para aplicación móvil de fitness, incluyendo wireframes, prototipos y sistema de diseño.",
+      "mainImage": "/mobile-app-interface.png",
+      "images": [
+        "/mobile-app-interface.png",
+        "/mobile-app-interface.png",
+        "/mobile-app-interface.png"
+      ],
+      "client": "FitLife App",
+      "year": "2024",
+      "tools": ["Figma", "Adobe XD", "Principle"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Packaging Design",
+      "category": "Product Design",
+      "description": "Diseño de packaging premium para línea de productos cosméticos, enfocado en sostenibilidad y elegancia.",
+      "mainImage": "/packaging-design-modern.jpg",
+      "images": [
+        "/packaging-design-modern.jpg?height=600&width=800",
+        "/packaging-design-modern.jpg",
+        "/packaging-design-modern.jpg"
+      ],
+      "client": "Bella Natura",
+      "year": "2023",
+      "tools": ["Adobe Illustrator", "Adobe Photoshop", "KeyShot"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Website Design",
+      "category": "Web Design",
+      "description": "Diseño y desarrollo de sitio web corporativo responsive con enfoque en experiencia de usuario y conversión.",
+      "mainImage": "/social-media-templates.png",
+      "images": [
+        "/social-media-templates.png",
+        "/social-media-templates.png",
+        "/social-media-templates.png"
+      ],
+      "client": "Innovate Corp",
+      "year": "2024",
+      "tools": ["Figma", "Adobe XD", "Webflow"],
+      "size": "L",
+      "featured": true
+    },
+    {
+      "id": 5,
+      "title": "Infographic Design",
+      "category": "Digital Marketing",
+      "description": "Serie de infografías para campaña de marketing digital, comunicando datos complejos de manera visual y atractiva.",
+      "mainImage": "/product-packaging-design (1).png",
+      "images": [
+        "/product-packaging-design (1).png",
+        "/product-packaging-design (1).png",
+        "/product-packaging-design (1).png"
+      ],
+      "client": "DataViz Agency",
+      "year": "2023",
+      "tools": ["Adobe Illustrator", "Adobe After Effects", "Canva"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Social Media Campaign A",
+      "category": "Digital Marketing",
+      "description": "Campaña visual completa para redes sociales, incluyendo posts, stories, banners y contenido interactivo.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "Social Boost",
+      "year": "2024",
+      "tools": ["Adobe Photoshop", "Canva", "Figma"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 7,
+      "title": "E-commerce Redesign",
+      "category": "Web Design",
+      "description": "Rediseño de e-commerce con foco en conversión, búsqueda, checkout y mobile.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "ShopPro",
+      "year": "2024",
+      "tools": ["Figma", "Next.js", "Framer"],
+      "size": "L",
+      "featured": true
+    },
+    {
+      "id": 8,
+      "title": "Illustration Series",
+      "category": "Illustration",
+      "description": "Serie de ilustraciones editoriales para blog y redes.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "DailyMag",
+      "year": "2023",
+      "tools": ["Procreate", "Adobe Illustrator"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 9,
+      "title": "Landing Page Sprint",
+      "category": "Web Design",
+      "description": "Landing page con test A/B y analítica integrada.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "LeadGen",
+      "year": "2024",
+      "tools": ["Figma", "Webflow"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 10,
+      "title": "Motion Graphics Kit",
+      "category": "Animation",
+      "description": "Paquete de motion graphics para campañas de anuncios.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "AdStudio",
+      "year": "2024",
+      "tools": ["After Effects", "Premiere"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 11,
+      "title": "Product 3D Mockups",
+      "category": "Product Design",
+      "description": "Mockups 3D fotorrealistas para presentaciones de producto.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "RenderLab",
+      "year": "2023",
+      "tools": ["Blender", "KeyShot"],
+      "size": "L",
+      "featured": true
+    },
+    {
+      "id": 12,
+      "title": "Icon Set",
+      "category": "UI Design",
+      "description": "Set de 120 íconos a medida en estilo outline y filled.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "Iconify",
+      "year": "2023",
+      "tools": ["Figma", "Illustrator"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 13,
+      "title": "Design System",
+      "category": "UI/UX Design",
+      "description": "Sistema de diseño escalable con tokens, componentes y documentación.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "SysCore",
+      "year": "2024",
+      "tools": ["Figma", "Storybook"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 14,
+      "title": "AR Promo",
+      "category": "Experiment",
+      "description": "Experimentos de realidad aumentada para retail.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "XR Labs",
+      "year": "2024",
+      "tools": ["Unity", "Blender"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 15,
+      "title": "Corporate Deck",
+      "category": "Presentation",
+      "description": "Presentación corporativa con visual storytelling.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "PitchPro",
+      "year": "2024",
+      "tools": ["Keynote", "Figma"],
+      "size": "L",
+      "featured": false
+    },
+    {
+      "id": 16,
+      "title": "SaaS Dashboard",
+      "category": "UI/UX Design",
+      "description": "Dashboard para SaaS con dark mode y gráficos en tiempo real.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "Metricsly",
+      "year": "2024",
+      "tools": ["Figma", "Chart.js"],
+      "size": "L",
+      "featured": true
+    },
+    {
+      "id": 17,
+      "title": "Email Templates",
+      "category": "Marketing",
+      "description": "Plantillas de email responsive para campañas.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "MailerPro",
+      "year": "2023",
+      "tools": ["MJML", "Figma"],
+      "size": "S",
+      "featured": false
+    },
+    {
+      "id": 18,
+      "title": "Logo Exploration",
+      "category": "Branding",
+      "description": "Exploración de logotipos con variaciones tipográficas.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "Alpha Co.",
+      "year": "2024",
+      "tools": ["Illustrator"],
+      "size": "M",
+      "featured": false
+    },
+    {
+      "id": 19,
+      "title": "Event Microsite",
+      "category": "Web Design",
+      "description": "Micrositio para evento con registro y agenda.",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "ConfX",
+      "year": "2024",
+      "tools": ["Figma", "Next.js"],
+      "size": "L",
+      "featured": false
+    },
+    {
+      "id": 20,
+      "title": "Campaign Visuals",
+      "category": "Advertising",
+      "description": "Visuales para campaña multicanal (OOH, social, display).",
+      "mainImage": "/modern-brand-identity.png",
+      "images": [
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png",
+        "/modern-brand-identity.png"
+      ],
+      "client": "AdWorks",
+      "year": "2024",
+      "tools": ["Photoshop", "Illustrator"],
+      "size": "L",
+      "featured": true
+    }
+  ]
+}

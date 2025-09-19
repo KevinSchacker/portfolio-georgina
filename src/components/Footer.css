@@ -1,0 +1,17 @@
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-link {
+  color: #ffd700; /* dorado sólido */
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffb347; /* tono más suave en hover */
+}

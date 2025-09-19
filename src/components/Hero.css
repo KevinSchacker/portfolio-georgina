@@ -1,0 +1,219 @@
+/* Aplicando fondo oscuro directamente al componente hero para garantizar contraste */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Agregando pseudo-elemento para forzar fondo oscuro */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  z-index: 0;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+/* Nuevo diseño tipográfico inspirado en la referencia */
+.hero-main-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Asegurando texto blanco con sombra para contraste */
+.hero-portfolio-text {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #ffffff !important;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin: 0;
+  text-transform: lowercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.hero-identity {
+  border-top: 3px solid #ffffff;
+  padding-top: 1.5rem;
+}
+
+/* Asegurando texto blanco con sombra para contraste */
+.hero-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Asegurando texto blanco con sombra para contraste */
+.hero-profession {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f1f5f9 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Composición circular de imágenes inspirada en la referencia */
+.hero-visual {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.circles-composition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.design-circle {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.design-circle:hover {
+  transform: scale(1.05);
+}
+
+.design-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Posicionamiento específico de cada círculo siguiendo el patrón de la referencia */
+.circle-1 {
+  width: 180px;
+  height: 180px;
+  top: 0;
+  right: 20%;
+}
+
+.circle-2 {
+  width: 140px;
+  height: 140px;
+  top: 15%;
+  right: 0;
+}
+
+.circle-3 {
+  width: 200px;
+  height: 200px;
+  top: 40%;
+  right: 15%;
+}
+
+.circle-4 {
+  width: 120px;
+  height: 120px;
+  bottom: 30%;
+  right: 0;
+}
+
+.circle-5 {
+  width: 160px;
+  height: 160px;
+  bottom: 0;
+  right: 25%;
+}
+
+.circle-6 {
+  width: 100px;
+  height: 100px;
+  bottom: 15%;
+  right: 45%;
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-portfolio-text {
+    font-size: 6rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .hero-visual {
+    height: 400px;
+  }
+
+  .design-circle {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 1rem;
+  }
+
+  .hero-portfolio-text {
+    font-size: 4rem;
+  }
+
+  .hero-name {
+    font-size: 1.8rem;
+  }
+
+  .hero-profession {
+    font-size: 0.9rem;
+  }
+
+  .hero-visual {
+    height: 300px;
+  }
+
+  .design-circle {
+    transform: scale(0.7);
+  }
+}

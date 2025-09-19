@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Forzando fondo púrpura muy oscuro para mejor contraste con texto blanco */
+html,
+body,
+#root,
+.App {
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  min-height: 100vh;
+  background-attachment: fixed !important;
+}
+
+html {
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  min-height: 100vh;
+  background-attachment: fixed !important;
+}
+
+#root {
+  min-height: 100vh;
+  background: #1e1b4b !important;
+  background-image: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+}
+
+/* Agregando pseudo-elemento con fondo sólido muy oscuro como respaldo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1e1b4b !important;
+  z-index: -2;
+}
+
+/* Agregando otro respaldo con gradiente */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  z-index: -1;
+}
