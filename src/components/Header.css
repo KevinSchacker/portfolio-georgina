@@ -1,213 +1,124 @@
 /* =========================================================
-   VARIABLES
+   RESET ANTI-SIDE SCROLL + VARS
    ========================================================= */
+html, body { max-width: 100%; overflow-x: hidden; }
 :root{
   --hdr-bg: rgba(6,10,20,.65);
   --hdr-blur: 10px;
   --hdr-border: rgba(148,163,184,.16);
   --hdr-fg: #e8eef6;
   --hdr-fg-dim: #aeb8c6;
-  --accent: #f0c27b; /* dorado suave */
+  --accent: #f0c27b;
 }
 
 /* =========================================================
    HEADER BASE
    ========================================================= */
-.header{
-  position: sticky;
+.header {
+  position: fixed;   /* antes estaba sticky */
   top: 0;
+  left: 0;
+  width: 100%;       /* asegura que cubra todo el ancho */
   z-index: 1000;
   -webkit-backdrop-filter: blur(var(--hdr-blur));
   backdrop-filter: blur(var(--hdr-blur));
   background: var(--hdr-bg);
   border-bottom: 1px solid var(--hdr-border);
 }
-
-.container{
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(14px, 2.4vw, 24px);
+main, .content {
+  padding-top: 60px;  /* ajustá según la altura real del header */
 }
 
-.header-row{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 56px;
-}
-
+.container{ max-width:1200px; margin-inline:auto; padding-inline:clamp(14px,2.4vw,24px); }
+.header-row{ display:flex; align-items:center; justify-content:space-between; min-height:56px; }
 .logo{
-  font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  font-weight: 800;
-  letter-spacing: .08em;
-  color: var(--hdr-fg);
-  text-decoration: none;
-  font-size: clamp(.95rem, 2.2vw, 1.05rem);
+  font-family:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-weight:800; letter-spacing:.08em; color:var(--hdr-fg); text-decoration:none;
+  font-size:clamp(.95rem,2.2vw,1.05rem);
 }
 
 /* =========================================================
    NAV (DESKTOP)
    ========================================================= */
-.nav[data-desktop]{
-  display: flex;
-  gap: clamp(12px, 2vw, 24px);
-}
-
-.nav-link{
-  color: var(--hdr-fg-dim);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color .2s ease, transform .2s ease;
-}
-
-.nav-link:hover,
-.nav-link:focus-visible{
-  color: var(--hdr-fg);
-  transform: translateY(-1px);
-}
+.nav[data-desktop]{ display:flex; gap:clamp(12px,2vw,24px); }
+.nav-link{ color:var(--hdr-fg-dim); text-decoration:none; font-weight:500; transition:color .2s, transform .2s; }
+.nav-link:hover,.nav-link:focus-visible{ color:var(--hdr-fg); transform:translateY(-1px); }
 
 /* Focus visible accesible */
-.nav-link:focus-visible,
-.hamburger:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
+.nav-link:focus-visible,.hamburger:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
 /* =========================================================
-   HAMBURGER (OCULTO EN DESKTOP)
+   HAMBURGER
    ========================================================= */
 .hamburger{
-  display: none;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--hdr-border);
-  border-radius: 10px;
-  background: rgba(255,255,255,.03);
-  position: relative;
-  color: var(--hdr-fg);
-  cursor: pointer;
+  display:none; width:38px; height:38px; border:1px solid var(--hdr-border);
+  border-radius:10px; background:rgba(255,255,255,.03); position:relative; color:var(--hdr-fg); cursor:pointer;
 }
+.hamburger-line{ position:absolute; left:8px; right:8px; height:2px; background:currentColor; border-radius:2px;
+  transition:transform .25s, opacity .2s, top .25s, bottom .25s; }
+.hamburger-line:nth-child(1){ top:11px; }
+.hamburger-line:nth-child(2){ top:18px; }
+.hamburger-line:nth-child(3){ bottom:11px; }
+.hamburger.is-open .hamburger-line:nth-child(1){ top:18px; transform:rotate(45deg); }
+.hamburger.is-open .hamburger-line:nth-child(2){ opacity:0; }
+.hamburger.is-open .hamburger-line:nth-child(3){ bottom:auto; top:18px; transform:rotate(-45deg); }
 
-.hamburger-line{
-  position: absolute;
-  left: 8px; right: 8px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-  transition: transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease;
-}
-
-.hamburger-line:nth-child(1){ top: 11px; }
-.hamburger-line:nth-child(2){ top: 18px; }
-.hamburger-line:nth-child(3){ bottom: 11px; }
-
-.hamburger.is-open .hamburger-line:nth-child(1){
-  top: 18px; transform: rotate(45deg);
-}
-.hamburger.is-open .hamburger-line:nth-child(2){
-  opacity: 0;
-}
-.hamburger.is-open .hamburger-line:nth-child(3){
-  bottom: auto; top: 18px; transform: rotate(-45deg);
-}
-
-/* =========================================================
-   MOBILE-ONLY (BREAKPOINT)
-   ========================================================= */
-@media (max-width: 768px){
-  .nav[data-desktop]{ display: none; }
-  .hamburger[data-mobile]{ display: inline-flex; align-items: center; justify-content: center; }
+@media (max-width:768px){
+  .nav[data-desktop]{ display:none; }
+  .hamburger[data-mobile]{ display:inline-flex; align-items:center; justify-content:center; }
 }
 
 /* En desktop ocultamos completamente drawer y backdrop */
-@media (min-width: 769px){
-  .mobile-drawer,
-  .backdrop{
-    display: none !important;
-  }
+@media (min-width:769px){
+  .mobile-drawer, .backdrop{ display:none !important; }
 }
 
 /* =========================================================
-   BACKDROP (OVERLAY)
+   SCROLL-LOCK (aplicado a <html> y <body> vía JS)
+   ========================================================= */
+html.drawer-open{ height:100%; overflow:hidden; overscroll-behavior:none; touch-action:none; }
+body.drawer-open{
+  position:fixed; width:100%; overflow:hidden; overscroll-behavior:contain;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* =========================================================
+   BACKDROP
    ========================================================= */
 .backdrop{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s ease;
-  z-index: 990;
+  position:fixed; inset:0; width:100%; height:100dvh;
+  background:rgba(0,0,0,.35);
+  opacity:0; pointer-events:none; transition:opacity .25s;
+  z-index: 9998;
 }
-.backdrop.visible{
-  opacity: 1;
-  pointer-events: auto;
-}
+.backdrop.visible{ opacity:1; pointer-events:auto; }
 
 /* =========================================================
-   MOBILE DRAWER (PANEL LATERAL)
+   MOBILE DRAWER
    ========================================================= */
 .mobile-drawer{
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100dvh;
-  width: min(86vw, 320px);
-  background: rgba(10,14,26,.96);
-  border-left: 1px solid var(--hdr-border);
-  box-shadow: -20px 0 40px rgba(0,0,0,.35);
-  transform: translateX(100%);
-  transition: transform .28s ease;
-  z-index: 1005;
-  display: block; /* animamos con transform; en desktop se oculta por media query */
-  padding: calc(16px + env(safe-area-inset-top)) 18px 18px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  gap: 6px;
+  position:fixed; top:0; right:0; height:100dvh; width:min(86vw,320px);
+  background:rgba(10,14,26,.96); border-left:1px solid var(--hdr-border);
+  box-shadow:-20px 0 40px rgba(0,0,0,.35);
+  transform:translateX(100%); transition:transform .28s ease; will-change:transform;
+  z-index: 9999; display:block; padding:calc(16px + env(safe-area-inset-top)) 18px 18px;
+  overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; gap:6px;
 }
-
-.mobile-drawer.open{ transform: translateX(0); }
+.mobile-drawer.open{ transform:translateX(0); }
 
 /* Links del drawer */
 .mobile-link{
-  display: block;
-  color: var(--hdr-fg);
-  text-decoration: none;
-  font-size: 1.05rem;
-  padding: 12px 10px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.03);
-  border: 1px solid var(--hdr-border);
-  transition: background .2s ease, transform .2s ease, color .2s ease, border-color .2s ease;
+  display:block; color:var(--hdr-fg); text-decoration:none; font-size:1.05rem;
+  padding:12px 10px; border-radius:10px; background:rgba(255,255,255,.03);
+  border:1px solid var(--hdr-border); transition:background .2s, transform .2s, color .2s, border-color .2s;
 }
-
-.mobile-link:hover,
-.mobile-link:focus-visible{
-  background: rgba(255,255,255,.06);
-  transform: translateX(2px);
-  border-color: rgba(255,255,255,.18);
-}
-
-/* Resaltito para Contact (LinkedIn) */
-.mobile-link[href*="linkedin"]{
-  border-color: rgba(240,194,123,.24);
-}
-.mobile-link[href*="linkedin"]:hover{
-  color: #1a1a1a;
-  background: linear-gradient(90deg, #ffd27a, #f0c27b);
-  border-color: transparent;
-}
+.mobile-link:hover,.mobile-link:focus-visible{ background:rgba(255,255,255,.06); transform:translateX(2px); border-color:rgba(255,255,255,.18); }
+.mobile-link[href*="linkedin"]{ border-color:rgba(240,194,123,.24); }
+.mobile-link[href*="linkedin"]:hover{ color:#1a1a1a; background:linear-gradient(90deg,#ffd27a,#f0c27b); border-color:transparent; }
 
 /* =========================================================
-   MOTION (ACCESIBILIDAD)
+   MOTION
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
-  .hamburger-line,
-  .mobile-drawer,
-  .backdrop,
-  .nav-link{
-    transition-duration: .01ms !important;
-    transition: none !important;
-  }
+  .hamburger-line, .mobile-drawer, .backdrop, .nav-link{ transition-duration:.01ms !important; transition:none !important; }
 }

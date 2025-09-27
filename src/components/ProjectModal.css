@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.6);
-  z-index: 1000;
+  z-index: 2000; /* antes 1000: ahora queda por encima del header/drawer */
   display: grid;
   place-items: center;
   padding: 4dvh max(5vw, 16px);
@@ -54,7 +54,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* Secciones internas (ajustá a tu gusto) */
+/* Secciones internas */
 .modal-description { margin-bottom: 1rem; color: #e2e8f0; }
 .modal-tools h4 { margin: 0 0 .5rem; color: #f8fafc; }
 .tools-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
@@ -93,4 +93,100 @@
 }
 @media (max-width: 600px) {
   .images-grid { grid-template-columns: 1fr; }
+}
+/* =========================
+   LIGHTBOX (visor grande)
+   ========================= */
+.image-button {
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  background: transparent;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;            /* por encima del modal-content (2000) */
+  background: rgba(0,0,0,.9);
+  display: grid;
+  place-items: center;
+  padding: max(16px, 3vh);
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: 96vw;
+  max-height: 92vh;
+  display: grid;
+  grid-template-columns: auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.lightbox-img {
+  max-width: 96vw;
+  max-height: 86vh;
+  object-fit: contain;
+  box-shadow: 0 10px 30px rgba(0,0,0,.55);
+  border-radius: 8px;
+}
+
+/* Controles */
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #f8fafc;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightbox-close {
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 60px;
+  font-size: 32px;
+  display: grid;
+  place-items: center;
+  user-select: none;
+}
+
+.lightbox-prev { left: 8px; }
+.lightbox-next { right: 8px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 10px;
+  background: rgba(0,0,0,.35);
+  color: #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: .9rem;
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+/* Táctil: agranda un poco los botones */
+@media (max-width: 640px) {
+  .lightbox-prev, .lightbox-next {
+    width: 56px;
+    height: 64px;
+    font-size: 36px;
+  }
+  .lightbox-close { width: 44px; height: 44px; font-size: 22px; }
 }

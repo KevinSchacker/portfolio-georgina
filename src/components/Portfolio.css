@@ -70,13 +70,13 @@
   font-family: var(--font-sans);
   background: rgba(0, 0, 0, 0.3);
   overflow-x: clip;
+  padding-top: calc(var(--site-header-h) + 8px);
 }
 
 .portfolio-wrapper {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
-  margin-top: 15px;
   margin-bottom: var(--portfolio-header-gap);
   padding: 0 clamp(1.25rem, 2vw, 2rem);
 }

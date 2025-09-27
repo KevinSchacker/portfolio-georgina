@@ -1,92 +1,121 @@
-"use client"
-import { useEffect, useState } from "react"
-import "./Header.css"
+import { useEffect, useState, useCallback } from "react";
+import "./Header.css";
 
 const Header = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [lockY, setLockY] = useState(0);
 
-  // Cerrar al cambiar ancho (evita quedar abierto al rotar)
+  // Bloqueo/desbloqueo de scroll del documento
+  const lockScroll = useCallback(() => {
+    const y = window.scrollY || window.pageYOffset || 0;
+    setLockY(y);
+    document.documentElement.classList.add("drawer-open");
+    document.body.classList.add("drawer-open");
+    document.body.style.top = `-${y}px`;       // fija el body en la posición actual
+  }, []);
+
+  const unlockScroll = useCallback(() => {
+    document.documentElement.classList.remove("drawer-open");
+    document.body.classList.remove("drawer-open");
+    const y = lockY;
+    document.body.style.top = "";              // libera el body
+    window.scrollTo(0, y);                     // restaura la posición exacta
+  }, [lockY]);
+
+  const openMenu = () => {
+    if (open) return;
+    setOpen(true);
+    lockScroll();
+  };
+  const closeMenu = () => {
+    if (!open) return;
+    setOpen(false);
+    unlockScroll();
+  };
+  const toggleMenu = () => (open ? closeMenu() : openMenu());
+
+  // Cerrar con Escape
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && closeMenu();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [closeMenu]);
+
+  // Cerrar si cambia el tamaño a desktop
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setOpen(false)
-    }
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
-  }, [])
-
-  // Evitar scroll del body cuando el menú está abierto
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : ""
-    return () => (document.body.style.overflow = "")
-  }, [open])
+      if (window.innerWidth >= 769 && open) closeMenu();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [open, closeMenu]);
 
   return (
     <header className="header" role="banner">
-      <div className="container header-row">
-        <a href="#portfolio" className="logo" aria-label="Go to Portfolio">
-          GEORGINA SANCHEZ
-        </a>
+      <div className="container">
+        <div className="header-row">
+          <a href="/" className="logo">GEORGINA SANCHEZ</a>
 
-        {/* Desktop nav */}
-        <nav className="nav" aria-label="Primary" data-desktop>
-          <a href="#portfolio" className="nav-link">Portfolio</a>
-          <a href="#about" className="nav-link">About Me</a>
-          <a
-            href="https://linkedin.com/in/sanchezgeorgina"
-            className="nav-link"
-            target="_blank"
-            rel="noopener noreferrer"
+          <nav className="nav" data-desktop>
+            <a href="#portfolio" className="nav-link">Portfolio</a>
+            <a href="#about" className="nav-link">About Me</a>
+            <a
+              href="https://linkedin.com/in/sanchezgeorgina"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link"
+            >
+              Contact
+            </a>
+          </nav>
+
+          {/* Botón hamburguesa */}
+          <button
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-drawer"
+            className={`hamburger ${open ? "is-open" : ""}`}
+            data-mobile
+            onClick={toggleMenu}
           >
-            Contact
-          </a>
-        </nav>
-
-        {/* Hamburger */}
-        <button
-          className={`hamburger ${open ? "is-open" : ""}`}
-          aria-label="Open menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-          data-mobile
-        >
-          <span className="hamburger-line" />
-          <span className="hamburger-line" />
-          <span className="hamburger-line" />
-        </button>
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+        </div>
       </div>
 
       {/* Backdrop */}
       <div
         className={`backdrop ${open ? "visible" : ""}`}
-        onClick={() => setOpen(false)}
-        aria-hidden={!open}
+        onClick={closeMenu}
       />
 
-      {/* Mobile drawer */}
-      <nav
-        id="mobile-menu"
+      {/* Drawer */}
+      <aside
+        id="mobile-drawer"
         className={`mobile-drawer ${open ? "open" : ""}`}
-        aria-label="Mobile"
+        role="dialog"
+        aria-modal="true"
       >
-        <a href="#portfolio" className="mobile-link" onClick={() => setOpen(false)}>
+        <a href="#portfolio" className="mobile-link" onClick={closeMenu}>
           Portfolio
         </a>
-        <a href="#about" className="mobile-link" onClick={() => setOpen(false)}>
+        <a href="#about" className="mobile-link" onClick={closeMenu}>
           About Me
         </a>
         <a
           href="https://linkedin.com/in/sanchezgeorgina"
-          className="mobile-link"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => setOpen(false)}
+          className="mobile-link"
+          onClick={closeMenu}
         >
           Contact
         </a>
-      </nav>
+      </aside>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
